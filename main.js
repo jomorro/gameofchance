@@ -1,42 +1,53 @@
-let userChoice = prompt("Do you choose rock, paper, or scissors?");
-let computerChoice = Math.ceil(Math.random() * 3);
+let playerDiv = document.getElementById("playerBox");
+let computerDiv = document.getElementById("computerBox");
+let computerChoice = "";
 
-if (computerChoice == 1) {
+
+let randomNumber1to3 = Math.floor(Math.random() * 3 + 1)
+
+if (randomNumber1to3 == 3) {
     computerChoice = "rock";
-} else if (computerChoice == 2) {
-    computerChoice = "paper";
+} else if (randomNumber1to3 == 2) {
+    computerChoice = "scissors"
 } else {
-    computerChoice = "scissors";
-}
-
-function compareChoices(choice1, choice2) {
-
-    let text;
-
-    if (choice1 === choice2) {
-        text = "Draw";
-    }
-    if (choice1 === "rock") {
-        if (choice2 === "scissors") {
-            text = "Rock beats scissors! You win!";
-        } else {
-            text = "Paper beats rock! Computer wins!";
-        }
-    }
-    if (choice1 === "paper") {
-        if (choice2 === "rock") {
-            text = "Paper beats Rock! You win!";
-        } else {
-            return "Scissors beats paper! Computer wins!";
-        }
-    }
-    if (choice1 === "scissors") {
-        if (choice2 === "rock") {
-            text = "Rock beats scissors. Computer wins!";
-        } else {
-            text = "Scissors beats paper! You win!";
-        }
-    }
-    document.getElementById("winner").innerHTML = text;
+    computerChoice = "paper"
 };
-compareChoices(userChoice, computerChoice);
+
+
+let playerChoice = prompt("Choose your weapon. Will it be 'paper', 'rock', or 'scissors'?");
+    if (playerChoice != "rock" && playerChoice != "scissors" && playerChoice != "paper"){
+        alert("That is not a weapon you may choose! Refresh the page and choose again!");
+    }
+
+
+let compare = function (playerChoice, computerChoice) {
+    console.log("Player chooses--", playerChoice, "Computer chooses--", computerChoice);
+    if (playerChoice === computerChoice) {
+        alert("The result is a tie!");
+        return;
+    };
+    if (playerChoice === "rock") {
+        if (computerChoice === "scissors") {
+            alert("You win with rock!");
+        } else {
+            alert("Computer wins with paper!");
+        };
+    };
+    if (playerChoice === "paper") {
+        if (computerChoice === "rock") {
+            alert("You win with paper!");
+        } else {
+            alert("Computer wins with scissors!");
+        };
+    };
+    if (playerChoice === "scissors") {
+        if (computerChoice === "paper") {
+            alert("You win with scissors");
+        } else {
+            alert("Computer wins with rock!");
+        };
+    };
+};
+
+
+compare(playerChoice, computerChoice);
